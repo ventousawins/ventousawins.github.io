@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wins Games & Audio - Games, apps, audio and software</title>
+    <link rel="icon" href="https://wins.com.ar/wp-content/uploads/2024/02/cropped-screenshot_20240222-104424-32x32.png">
+    <style>
+        /* RESET & BASE - Manteniendo la paleta de colores del sitio original */
+        :root {
+            --color-bg: #000000;
+            --color-text: #f9f9f9;
+            --color-text-secondary: #a4a4a4;
+            --color-accent: #697dee;
+            --color-accent-hover: #5a6fd8;
+            --color-header-bg: rgba(0, 0, 0, 0.85);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* HEADER & NAV - Recreando el header con logo y menú responsivo */
+        .site-header {
+            background: var(--color-header-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0.75rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .site-logo {
+            height: 65px;
+            width: auto;
+            border-radius: 12px;
+        }
+        .site-title {
+            font-family: 'Cardo', serif;
+            font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+            font-weight: 600;
+            color: white;
+        }
+
+        /* NAVIGATION - Menú de navegación principal */
+        .nav-desktop { display: flex; gap: 2rem; }
+        .nav-desktop a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-desktop a:hover { color: var(--color-accent); }
+        .nav-desktop a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: var(--color-accent);
+            transition: width 0.3s;
+        }
+        .nav-desktop a:hover::after { width: 100%; }
+
+        /* MOBILE MENU - Botón y menú para móviles */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        .nav-mobile {
+            display: none;
+            flex-direction: column;
+            background: var(--color-header-bg);
+            padding: 1rem;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-mobile.active { display: flex; }
+        .nav-mobile a {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* HERO SECTION - Portada principal con imagen de fondo */
+        .hero {
+            min-height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)),
+                        url('https://wins.com.ar/wp-content/uploads/2024/04/logo-v1-render-3-4096-1024x576.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 1rem 4rem;
+            margin-top: 80px; /* Compensa el header fijo */
+        }
+        .hero-content { max-width: 800px; }
+        .hero h1 {
+            font-family: 'Cardo', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--color-text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* BUTTONS - Botón estilo del sitio original */
+        .btn {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: white;
+            padding: 0.85rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0.5rem;
+        }
+        .btn:hover {
+            background-color: var(--color-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(105, 125, 238, 0.3);
+        }
+
+        /* FOOTER - Pie de página simplificado */
+        .site-footer {
+            background: rgba(0,0,0,0.9);
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+        }
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 3rem;
+        }
+        .footer-logo-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        .footer-logo {
+            height: 20px;
+            margin-bottom: 1rem;
+        }
+        .footer-title {
+            font-family: 'Cardo', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .footer-tagline {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE - Ajustes para tablets y móviles */
+        @media (max-width: 768px) {
+            .header-container { padding: 0.75rem 1.5rem; }
+            .mobile-menu-btn { display: block; }
+            .nav-desktop { display: none; }
+            .hero { padding: 5rem 1rem 3rem; min-height: 70vh; }
+            .footer-container { flex-direction: column; gap: 2rem; }
+        }
+        @media (max-width: 480px) {
+            .header-container { padding: 0.75rem 1rem; }
+            .site-logo { height: 50px; }
+            .hero h1 { font-size: 2.2rem; }
+            .btn { width: 100%; margin: 0.5rem 0; }
+        }
+    </style>
+    <!-- Fuentes de Google (las mismas que usa el sitio original) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-title">
+                <img src="https://wins.com.ar/wp-content/uploads/2024/02/cropped-screenshot_20240222-104424.png" 
+                     alt="Logo Wins Games & Audio" class="site-logo">
+                <h1 class="site-title">Wins Games & Audio</h1>
+            </div>
+            
+            <!-- Menú Desktop -->
+            <nav class="nav-desktop">
+                <a href="#about">About us</a>
+                <a href="#developments">Developments</a>
+                <a href="#apps">Mobile Apps</a>
+                <a href="#music">Music / Audio</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#support">Customer Support</a>
+            </nav>
+            
+            <!-- Botón Menú Móvil -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+        
+        <!-- Menú Móvil (oculto por defecto) -->
+        <nav class="nav-mobile" id="mobileMenu">
+            <a href="#about">About us</a>
+            <a href="#developments">Developments</a>
+            <a href="#apps">Mobile Apps</a>
+            <a href="#music">Music / Audio</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#support">Customer Support</a>
+        </nav>
+    </header>
+
+    <!-- HERO / PORTADA PRINCIPAL -->
+    <main class="hero">
+        <div class="hero-content">
+            <h1>Games, apps, audio and software</h1>
+            <p>Wins Games & Audio since 2024. Creating innovative digital experiences for everyone.</p>
+            <a href="https://play.google.com/store/apps/developer?id=Wins+Games&hl=es_PE" 
+               target="_blank" 
+               class="btn">
+                Google Play Store
+            </a>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-logo-section">
+                <img src="https://wins.com.ar/wp-content/uploads/2024/02/cropped-screenshot_20240222-104424.png" 
+                     alt="Logo Wins Games & Audio" class="footer-logo">
+                <h2 class="footer-title">Wins Games & Audio</h2>
+                <p class="footer-tagline">Games, apps, audio and software</p>
+            </div>
+            <!-- Espacio para columnas adicionales si las agregas en el futuro -->
+        </div>
+    </footer>
+
+    <!-- SCRIPT PARA EL MENÚ MÓVIL -->
+    <script>
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+            this.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        // Cierra el menú al hacer clic en un enlace (útil en móviles)
+        document.querySelectorAll('.nav-mobile a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.remove('active');
+                document.getElementById('mobileMenuBtn').textContent = '☰';
+            });
+        });
+    </script>
+</body>
+</html>
