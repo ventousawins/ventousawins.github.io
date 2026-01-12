@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wins Games & Audio - Games, apps, audio and software</title>
-    <link rel="icon" href="https://wins.com.ar/wp-content/uploads/2024/02/cropped-screenshot_20240222-104424-32x32.png">
     <style>
         /* RESET & BASE - Manteniendo la paleta de colores del sitio original */
         :root {
@@ -14,8 +13,13 @@
             --color-accent: #697dee;
             --color-accent-hover: #5a6fd8;
             --color-header-bg: rgba(0, 0, 0, 0.85);
+            --color-section-bg: #0a0a0a;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background-color: var(--color-bg);
@@ -53,6 +57,13 @@
             height: 65px;
             width: auto;
             border-radius: 12px;
+            background: linear-gradient(135deg, #697dee, #8a2be2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            padding: 0 10px;
         }
         .site-title {
             font-family: 'Cardo', serif;
@@ -111,8 +122,8 @@
         /* HERO SECTION - Portada principal con imagen de fondo */
         .hero {
             min-height: 85vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)),
-                        url('https://wins.com.ar/wp-content/uploads/2024/04/logo-v1-render-3-4096-1024x576.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)),
+                        linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -136,6 +147,46 @@
             margin-right: auto;
         }
 
+        /* SECTIONS - Estilos para las secciones de contenido */
+        .content-section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 5rem 2.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .section-title {
+            font-family: 'Cardo', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+        .section-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .card {
+            background: var(--color-section-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-accent);
+        }
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+        .card p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+        }
+
         /* BUTTONS - Botón estilo del sitio original */
         .btn {
             display: inline-block;
@@ -154,6 +205,13 @@
             background-color: var(--color-accent-hover);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(105, 125, 238, 0.3);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--color-accent);
+        }
+        .btn-secondary:hover {
+            background: rgba(105, 125, 238, 0.1);
         }
 
         /* FOOTER - Pie de página simplificado */
@@ -176,7 +234,15 @@
             min-width: 250px;
         }
         .footer-logo {
-            height: 20px;
+            height: 60px;
+            width: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #697dee, #8a2be2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
             margin-bottom: 1rem;
         }
         .footer-title {
@@ -187,6 +253,28 @@
         .footer-tagline {
             color: var(--color-text-secondary);
             font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .footer-links a {
+            color: var(--color-text-secondary);
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: var(--color-accent);
+        }
+        .copyright {
+            width: 100%;
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
         }
 
         /* RESPONSIVE - Ajustes para tablets y móviles */
@@ -195,13 +283,16 @@
             .mobile-menu-btn { display: block; }
             .nav-desktop { display: none; }
             .hero { padding: 5rem 1rem 3rem; min-height: 70vh; }
+            .content-section { padding: 4rem 1.5rem; }
+            .section-title { font-size: 2rem; }
             .footer-container { flex-direction: column; gap: 2rem; }
         }
         @media (max-width: 480px) {
             .header-container { padding: 0.75rem 1rem; }
-            .site-logo { height: 50px; }
+            .site-logo { height: 50px; width: 50px; }
             .hero h1 { font-size: 2.2rem; }
             .btn { width: 100%; margin: 0.5rem 0; }
+            .content-section { padding: 3rem 1rem; }
         }
     </style>
     <!-- Fuentes de Google (las mismas que usa el sitio original) -->
@@ -212,13 +303,12 @@
     <header class="site-header">
         <div class="header-container">
             <div class="logo-title">
-                <img src="https://wins.com.ar/wp-content/uploads/2024/02/cropped-screenshot_20240222-104424.png" 
-                     alt="Logo Wins Games & Audio" class="site-logo">
+                <div class="site-logo" aria-label="Logo Wins Games & Audio">W</div>
                 <h1 class="site-title">Wins Games & Audio</h1>
             </div>
             
             <!-- Menú Desktop -->
-            <nav class="nav-desktop">
+            <nav class="nav-desktop" aria-label="Navegación principal">
                 <a href="#about">About us</a>
                 <a href="#developments">Developments</a>
                 <a href="#apps">Mobile Apps</a>
@@ -228,11 +318,11 @@
             </nav>
             
             <!-- Botón Menú Móvil -->
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú de navegación">☰</button>
         </div>
         
         <!-- Menú Móvil (oculto por defecto) -->
-        <nav class="nav-mobile" id="mobileMenu">
+        <nav class="nav-mobile" id="mobileMenu" aria-label="Navegación móvil">
             <a href="#about">About us</a>
             <a href="#developments">Developments</a>
             <a href="#apps">Mobile Apps</a>
@@ -247,24 +337,158 @@
         <div class="hero-content">
             <h1>Games, apps, audio and software</h1>
             <p>Wins Games & Audio since 2024. Creating innovative digital experiences for everyone.</p>
-            <a href="https://play.google.com/store/apps/developer?id=Wins+Games&hl=es_PE" 
-               target="_blank" 
-               class="btn">
-                Google Play Store
-            </a>
+            <a href="#developments" class="btn">Explore Our Work</a>
+            <a href="#about" class="btn btn-secondary">Learn About Us</a>
         </div>
     </main>
+
+    <!-- SECCIONES DE CONTENIDO -->
+    <section id="about" class="content-section">
+        <h2 class="section-title">About us</h2>
+        <p>Welcome to Wins Games & Audio, a creative studio founded in 2024 dedicated to developing engaging games, functional apps, immersive audio experiences, and innovative software solutions.</p>
+        <div class="section-content">
+            <div class="card">
+                <h3 class="card-title">Our Mission</h3>
+                <p>To create digital experiences that entertain, inspire, and solve real-world problems through innovative technology and creative design.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Our Vision</h3>
+                <p>To become a leading creator of digital content that bridges entertainment and functionality across multiple platforms.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Our Values</h3>
+                <p>Quality, innovation, user-centric design, and continuous learning drive everything we create at Wins Games & Audio.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="developments" class="content-section">
+        <h2 class="section-title">Our Developments</h2>
+        <p>We specialize in creating a diverse range of digital products that combine technical excellence with creative vision.</p>
+        <div class="section-content">
+            <div class="card">
+                <h3 class="card-title">Game Development</h3>
+                <p>Creating immersive gaming experiences for various platforms with engaging gameplay mechanics and stunning visuals.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Software Solutions</h3>
+                <p>Developing custom software tools and applications that solve specific problems and enhance productivity.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Interactive Experiences</h3>
+                <p>Building interactive applications that blend entertainment with education and practical utility.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="apps" class="content-section">
+        <h2 class="section-title">Mobile Apps</h2>
+        <p>Our mobile applications combine intuitive design with powerful functionality to deliver exceptional user experiences.</p>
+        <div class="section-content">
+            <div class="card">
+                <h3 class="card-title">Utility Apps</h3>
+                <p>Practical applications designed to help users with everyday tasks, organization, and productivity.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Entertainment Apps</h3>
+                <p>Fun and engaging applications that provide entertainment and relaxation for users of all ages.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Educational Apps</h3>
+                <p>Interactive learning tools that make education accessible, engaging, and effective.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="music" class="content-section">
+        <h2 class="section-title">Music / Audio</h2>
+        <p>Our audio division creates original music, sound design, and audio experiences for games, apps, and multimedia projects.</p>
+        <div class="section-content">
+            <div class="card">
+                <h3 class="card-title">Original Soundtracks</h3>
+                <p>Composing and producing original music that enhances the emotional impact of digital experiences.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Sound Design</h3>
+                <p>Creating immersive soundscapes and effects that bring digital worlds to life.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Audio Production</h3>
+                <p>High-quality audio recording, mixing, and mastering services for various multimedia projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="privacy" class="content-section">
+        <h2 class="section-title">Privacy Policy</h2>
+        <p>At Wins Games & Audio, we take your privacy seriously. This policy outlines how we handle your information.</p>
+        <div class="section-content">
+            <div class="card">
+                <h3 class="card-title">Data Collection</h3>
+                <p>We only collect information necessary to provide and improve our services, with transparency about what we collect and why.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Data Usage</h3>
+                <p>Your data is used solely to enhance your experience with our products and services, never sold to third parties.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Your Rights</h3>
+                <p>You have the right to access, correct, or delete your personal information at any time through our support channels.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="support" class="content-section">
+        <h2 class="section-title">Customer Support</h2>
+        <p>We're committed to providing excellent support to ensure you have the best experience with our products.</p>
+        <div class="section-content">
+            <div class="card">
+                <h3 class="card-title">Technical Support</h3>
+                <p>Get help with installation, troubleshooting, and technical issues with any of our products.</p>
+                <a href="#" class="btn" style="margin: 0;">Contact Support</a>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Feedback & Suggestions</h3>
+                <p>We value your input. Share your ideas to help us improve our products and services.</p>
+                <a href="#" class="btn" style="margin: 0;">Share Feedback</a>
+            </div>
+            <div class="card">
+                <h3 class="card-title">FAQ & Documentation</h3>
+                <p>Access our comprehensive documentation and frequently asked questions for quick answers.</p>
+                <a href="#" class="btn" style="margin: 0;">View FAQ</a>
+            </div>
+        </div>
+    </section>
 
     <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-logo-section">
-                <img src="https://wins.com.ar/wp-content/uploads/2024/02/cropped-screenshot_20240222-104424.png" 
-                     alt="Logo Wins Games & Audio" class="footer-logo">
+                <div class="footer-logo" aria-label="Logo Wins Games & Audio">W</div>
                 <h2 class="footer-title">Wins Games & Audio</h2>
                 <p class="footer-tagline">Games, apps, audio and software</p>
+                <p>Creating innovative digital experiences since 2024.</p>
             </div>
-            <!-- Espacio para columnas adicionales si las agregas en el futuro -->
+            
+            <div class="footer-links">
+                <h3 class="footer-title">Quick Links</h3>
+                <a href="#about">About us</a>
+                <a href="#developments">Developments</a>
+                <a href="#apps">Mobile Apps</a>
+                <a href="#music">Music / Audio</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#support">Customer Support</a>
+            </div>
+            
+            <div class="footer-links">
+                <h3 class="footer-title">Contact</h3>
+                <p>Email: contact@winsgamesaudio.com</p>
+                <p>Follow us for updates</p>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Wins Games & Audio. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
@@ -274,6 +498,7 @@
             const mobileMenu = document.getElementById('mobileMenu');
             mobileMenu.classList.toggle('active');
             this.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+            this.setAttribute('aria-label', mobileMenu.classList.contains('active') ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
         });
         
         // Cierra el menú al hacer clic en un enlace (útil en móviles)
@@ -281,8 +506,44 @@
             link.addEventListener('click', () => {
                 document.getElementById('mobileMenu').classList.remove('active');
                 document.getElementById('mobileMenuBtn').textContent = '☰';
+                document.getElementById('mobileMenuBtn').setAttribute('aria-label', 'Abrir menú de navegación');
             });
         });
+        
+        // Resalta el enlace activo en la navegación mientras se desplaza
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-desktop a, .nav-mobile a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Añade clase active a los enlaces activos
+        const style = document.createElement('style');
+        style.textContent = `
+            .nav-desktop a.active,
+            .nav-mobile a.active {
+                color: var(--color-accent);
+            }
+            .nav-desktop a.active::after {
+                width: 100%;
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
